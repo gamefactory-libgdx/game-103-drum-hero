@@ -1,0 +1,45 @@
+{
+  "archetype": "piano-tiles",
+  "selection": {
+    "sprites/tileset": {
+      "pack": "free-race-track-2d-game-tile-set",
+      "source": "craftpix",
+      "path": "craftpix/tilesets/free-race-track-2d-game-tile-set",
+      "type": "tileset",
+      "theme": [
+        "generic"
+      ],
+      "png_count": 74
+    },
+    "sprites/ui": {
+      "pack": "ui-pack-rpg-expansion",
+      "source": "kenney",
+      "path": "kenney/ui-pack-rpg-expansion",
+      "type": "ui",
+      "theme": [
+        "generic"
+      ],
+      "png_count": 89
+    },
+    "backgrounds/menu": {
+      "pack": "free-war-pixel-art-2d-backgrounds",
+      "source": "craftpix",
+      "path": "craftpix/backgrounds/free-war-pixel-art-2d-backgrounds",
+      "type": "background",
+      "theme": [
+        "generic"
+      ],
+      "png_count": 98
+    },
+    "backgrounds/game": {
+      "pack": "free-autumn-pixel-backgrounds-for-game",
+      "source": "craftpix",
+      "path": "craftpix/backgrounds/free-autumn-pixel-backgrounds-for-game",
+      "type": "background",
+      "theme": [
+        "generic"
+      ],
+      "png_count": 4
+    }
+  }
+}

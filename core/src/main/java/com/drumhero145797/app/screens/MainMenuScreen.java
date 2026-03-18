@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector3;
@@ -44,6 +45,12 @@ public class MainMenuScreen implements Screen {
     public void show() {
         setupInput();
         game.playMusic("sounds/music/music_menu.ogg");
+        // Load menu background
+        String bg = "backgrounds/menu/Bright_Moon_asset.png";
+        if (!game.manager.isLoaded(bg)) {
+            game.manager.load(bg, Texture.class);
+            game.manager.finishLoading();
+        }
     }
 
     private void setupInput() {
@@ -92,8 +99,16 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0.129f, 0.129f, 0.129f, 1f); // #212121
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Draw menu background
+        String bg = "backgrounds/menu/Bright_Moon_asset.png";
+        if (game.manager.isLoaded(bg)) {
+            game.batch.begin();
+            game.batch.draw(game.manager.get(bg, Texture.class),
+                    0, 0, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+            game.batch.end();
+        }
         camera.update();
         game.shapeRenderer.setProjectionMatrix(camera.combined);
         game.batch.setProjectionMatrix(camera.combined);

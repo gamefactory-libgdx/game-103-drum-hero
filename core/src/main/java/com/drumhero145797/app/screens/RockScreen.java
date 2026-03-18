@@ -34,4 +34,13 @@ public class RockScreen extends BaseGameScreen {
     @Override protected Color  getLaneColor(int lane) { return LANE_BG[lane]; }
     @Override protected Color  getNoteColor(int lane) { return NOTE_COL[lane]; }
     @Override protected String getPerfectText()  { return "PERFECT!"; }
+    @Override protected String getBackgroundPath() { return "backgrounds/game/1-background_1.png"; }
+    @Override protected String[] getLaneSounds() {
+        return new String[]{
+            "sounds/sfx/sfx_jingle_hit_00.ogg",
+            "sounds/sfx/sfx_jingle_hit_04.ogg",
+            "sounds/sfx/sfx_jingle_hit_08.ogg",
+            "sounds/sfx/sfx_jingle_hit_12.ogg"
+        };
+    }
 }

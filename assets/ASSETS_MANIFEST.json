@@ -1,45 +1,47 @@
 {
   "archetype": "piano-tiles",
   "selection": {
-    "sprites/tileset": {
-      "pack": "free-race-track-2d-game-tile-set",
-      "source": "craftpix",
-      "path": "craftpix/tilesets/free-race-track-2d-game-tile-set",
-      "type": "tileset",
+    "sprites/object": {
+      "pack": "pixelfrog-tiny-swords-deco",
+      "source": "itch",
+      "path": "itch/pixelfrog/Tiny-Swords/Tiny-Swords-(Update-010)/Deco",
+      "type": "object",
       "theme": [
-        "generic"
+        "fantasy"
       ],
-      "png_count": 74
+      "png_count": 18
     },
     "sprites/ui": {
-      "pack": "ui-pack-rpg-expansion",
-      "source": "kenney",
-      "path": "kenney/ui-pack-rpg-expansion",
+      "pack": "craftpix-game-ui-pixel-art",
+      "source": "craftpix",
+      "path": "craftpix/game-ui-pixel-art",
       "type": "ui",
       "theme": [
-        "generic"
+        "varied"
       ],
-      "png_count": 89
+      "png_count": 139
     },
     "backgrounds/menu": {
-      "pack": "free-war-pixel-art-2d-backgrounds",
+      "pack": "free-city-ruin-backgrounds-pixel-art",
       "source": "craftpix",
-      "path": "craftpix/backgrounds/free-war-pixel-art-2d-backgrounds",
+      "path": "craftpix/backgrounds/free-city-ruin-backgrounds-pixel-art",
       "type": "background",
       "theme": [
-        "generic"
+        "city",
+        "urban"
       ],
-      "png_count": 98
+      "png_count": 29
     },
     "backgrounds/game": {
-      "pack": "free-autumn-pixel-backgrounds-for-game",
+      "pack": "free-planets-in-space-pixel-game-background-pack",
       "source": "craftpix",
-      "path": "craftpix/backgrounds/free-autumn-pixel-backgrounds-for-game",
+      "path": "craftpix/backgrounds/free-planets-in-space-pixel-game-background-pack",
       "type": "background",
       "theme": [
-        "generic"
+        "sci-fi",
+        "space"
       ],
-      "png_count": 4
+      "png_count": 19
     }
   }
 }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -78,6 +79,8 @@ public abstract class BaseGameScreen implements Screen {
     protected abstract Color  getLaneColor(int lane);   // background tint
     protected abstract Color  getNoteColor(int lane);   // note fill colour
     protected abstract String getPerfectText();          // "PERFECT!" / "GROOVE!" / "SHRED!"
+    protected abstract String getBackgroundPath();        // first file from assets/backgrounds/game/
+    protected abstract String[] getLaneSounds();          // 4 note sound paths, one per lane
 
     // ── Constructor ─────────────────────────────────────────────────────────
     protected BaseGameScreen(MainGame game) {
@@ -92,6 +95,11 @@ public abstract class BaseGameScreen implements Screen {
     public void show() {
         setupInput();
         game.playMusic("sounds/music/music_gameplay.ogg");
+        // Load background image
+        if (!game.manager.isLoaded(getBackgroundPath())) {
+            game.manager.load(getBackgroundPath(), Texture.class);
+            game.manager.finishLoading();
+        }
     }
 
     /** Called by PauseScreen → game.setScreen(previousScreen) via LibGDX show(). */
@@ -189,7 +197,11 @@ public abstract class BaseGameScreen implements Screen {
             laneText[lane] = "GOOD";
         }
         laneTimer[lane] = FEEDBACK_DURATION;
-        playSfx("sounds/sfx/sfx_hit.ogg");
+        // Play lane-specific musical note sound
+        String[] laneSounds = getLaneSounds();
+        if (game.sfxEnabled && laneSounds != null && lane < laneSounds.length) {
+            game.manager.get(laneSounds[lane], Sound.class).play(1.0f);
+        }
     }
 
     private void registerMiss(int lane) {
@@ -201,7 +213,7 @@ public abstract class BaseGameScreen implements Screen {
         laneText[lane]  = "MISS";
         laneTimer[lane] = FEEDBACK_DURATION;
         if (game.sfxEnabled)
-            game.manager.get("sounds/sfx/sfx_hit.ogg", Sound.class).play(0.3f);
+            game.manager.get("sounds/sfx/sfx_hit.ogg", Sound.class).play(0.2f);
         if (lives <= 0) triggerGameOver();
     }
 
@@ -257,11 +269,19 @@ public abstract class BaseGameScreen implements Screen {
     public void render(float delta) {
         update(delta);
 
-        Gdx.gl.glClearColor(0.10f, 0.10f, 0.18f, 1f);
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         game.shapeRenderer.setProjectionMatrix(camera.combined);
         game.batch.setProjectionMatrix(camera.combined);
+
+        // Draw background image first
+        if (game.manager.isLoaded(getBackgroundPath())) {
+            game.batch.begin();
+            game.batch.draw(game.manager.get(getBackgroundPath(), Texture.class),
+                    0, 0, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+            game.batch.end();
+        }
 
         drawLanes();
         drawImpactZone();
@@ -514,5 +534,8 @@ public abstract class BaseGameScreen implements Screen {
     @Override public void pause()  {}
     @Override public void resume() {}
     @Override public void hide()   {}
-    @Override public void dispose() {}
+    @Override public void dispose() {
+        if (game.manager.isLoaded(getBackgroundPath()))
+            game.manager.unload(getBackgroundPath());
+    }
 }

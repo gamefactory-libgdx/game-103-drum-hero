@@ -32,4 +32,13 @@ public class JazzScreen extends BaseGameScreen {
     @Override protected Color  getLaneColor(int lane) { return LANE_BG[lane]; }
     @Override protected Color  getNoteColor(int lane) { return NOTE_COL[lane]; }
     @Override protected String getPerfectText()  { return "GROOVE!"; }
+    @Override protected String getBackgroundPath() { return "backgrounds/game/2-background_1.png"; }
+    @Override protected String[] getLaneSounds() {
+        return new String[]{
+            "sounds/sfx/sfx_jingle_pizz_00.ogg",
+            "sounds/sfx/sfx_jingle_pizz_04.ogg",
+            "sounds/sfx/sfx_jingle_pizz_08.ogg",
+            "sounds/sfx/sfx_jingle_pizz_12.ogg"
+        };
+    }
 }

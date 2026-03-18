@@ -86,6 +86,12 @@ public class MainGame extends Game {
         manager.load("sounds/sfx/sfx_hit.ogg",            Sound.class);
         manager.load("sounds/sfx/sfx_game_over.ogg",      Sound.class);
         manager.load("sounds/sfx/sfx_level_complete.ogg", Sound.class);
+        // Per-lane musical note sounds — Rock (hit), Jazz (pizz), Metal (8bit)
+        for (int i : new int[]{0, 4, 8, 12}) {
+            manager.load("sounds/sfx/sfx_jingle_hit_"  + String.format("%02d", i) + ".ogg", Sound.class);
+            manager.load("sounds/sfx/sfx_jingle_pizz_" + String.format("%02d", i) + ".ogg", Sound.class);
+            manager.load("sounds/sfx/sfx_jingle_8bit_" + String.format("%02d", i) + ".ogg", Sound.class);
+        }
     }
 
     public void playMusic(String path) {

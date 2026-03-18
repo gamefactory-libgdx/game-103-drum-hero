@@ -32,4 +32,13 @@ public class MetalScreen extends BaseGameScreen {
     @Override protected Color  getLaneColor(int lane) { return LANE_BG[lane]; }
     @Override protected Color  getNoteColor(int lane) { return NOTE_COL[lane]; }
     @Override protected String getPerfectText()  { return "SHRED!"; }
+    @Override protected String getBackgroundPath() { return "backgrounds/game/3-background_1.png"; }
+    @Override protected String[] getLaneSounds() {
+        return new String[]{
+            "sounds/sfx/sfx_jingle_8bit_00.ogg",
+            "sounds/sfx/sfx_jingle_8bit_04.ogg",
+            "sounds/sfx/sfx_jingle_8bit_08.ogg",
+            "sounds/sfx/sfx_jingle_8bit_12.ogg"
+        };
+    }
 }
